@@ -1,0 +1,10 @@
+torch
+torchvision
+pillow
+scikit-learn
+numpy
+fastapi
+uvicorn
+python-multipart
+rembg[cpu]
+streamlit

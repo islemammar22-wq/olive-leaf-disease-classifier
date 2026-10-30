@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+data/
+dataset/
+*.pth
+!olive_multiclass_v3.pth
+debug_input.png
+archive.zip
