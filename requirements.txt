@@ -3,6 +3,7 @@ torchvision
 pillow
 scikit-learn
 numpy
+opencv-python-headless
 fastapi
 uvicorn
 python-multipart

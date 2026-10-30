@@ -93,7 +93,7 @@ python -m uvicorn app:app --reload
 
 Open `http://127.0.0.1:8000/docs`, use **POST /predict**, upload a leaf photo. The response contains the predicted class, confidence and per-class probabilities.
 
-Streamlit web UI (English / French / Arabic, with disease description, treatment and prevention notes):
+Streamlit web UI (English / French / Arabic, disease description, treatment and prevention notes, and an OpenCV photo-quality check for blur, brightness and leaf coverage; the check only warns, it does not change the prediction). A feedback form can save user-confirmed labels locally (`feedback/`, not committed) for later retraining; the model does not learn live. The app also shows a Grad-CAM heatmap of where the model looked, and the feedback form records whether the heatmap highlighted the right area:
 
 ```bash
 streamlit run app_streamlit.py
