@@ -104,3 +104,15 @@ Grad-CAM: `python gradcam.py path/to/image.jpg` saves a side-by-side heatmap PNG
 ## Stack
 
 Python, PyTorch, torchvision (ResNet18), scikit-learn, FastAPI, Uvicorn, rembg (optional preprocessing).
+## Run with Docker
+
+```bash
+docker build -t olive-leaf-api .
+docker run -p 8000:8000 -v rembg_cache:/root/.rembg olive-leaf-api
+```
+
+Then open http://localhost:8000/docs and upload an olive leaf image to the prediction endpoint.
+
+**Notes**
+- The first request downloads the background-removal model used by `rembg` (about 1 GB). The `-v rembg_cache:/root/.rembg` option keeps it, so it's downloaded only once.
+- Loading that model needs a lot of memory. If the container stops with `Exited (137)`, increase the memory available to Docker (around 10 GB worked here).
