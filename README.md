@@ -7,6 +7,12 @@ Built as a hands-on project to learn PyTorch end to end: data loading, training,
 
 > **Honest summary:** 92% accuracy on the held-out test split, but the training data is studio-style (single leaf, plain light background) from one source. The model fails on at least one real field photo, so it should not be assumed to generalize to orchard photos. See [Limitations](#limitations).
 
+## Live demo
+
+Try the Streamlit app here: **https://olive-leaf-disease-classifier-gtvlavgc5u7s5k3qcwjojx.streamlit.app/**
+
+Upload an olive leaf photo to get the predicted class, confidence, a Grad-CAM heatmap, and disease notes in English, French or Arabic. The app is hosted on Streamlit Community Cloud (free tier), so it may take a few seconds to wake up if it has been idle. Feedback saved from the hosted version may not persist between restarts.
+
 ## Results
 
 | Step | Setup | Test accuracy |
@@ -72,6 +78,7 @@ main.py               # v1: binary healthy/diseased training
 train_multiclass.py   # multiclass training + evaluation (final model: olive_multiclass_v3.pth)
 app.py                # FastAPI inference service
 app_streamlit.py      # Streamlit web UI (EN/FR/AR)
+demo/                 # copy of the Streamlit app + requirements used for the hosted demo
 external_test.py      # accuracy on a folder of labeled images, with/without rembg
 gradcam.py            # Grad-CAM heatmaps
 requirements.txt
@@ -99,11 +106,13 @@ Streamlit web UI (English / French / Arabic, disease description, treatment and 
 streamlit run app_streamlit.py
 ```
 
+The hosted demo is deployed from `demo/app.py` on Streamlit Community Cloud. It loads `olive_multiclass_v3.pth` from the repo root and installs the CPU build of PyTorch via `demo/requirements.txt`.
+
 Grad-CAM: `python gradcam.py path/to/image.jpg` saves a side-by-side heatmap PNG.
 
 ## Stack
 
-Python, PyTorch, torchvision (ResNet18), scikit-learn, FastAPI, Uvicorn, rembg (optional preprocessing).
+Python, PyTorch, torchvision (ResNet18), scikit-learn, FastAPI, Uvicorn, Streamlit, OpenCV, rembg (optional preprocessing).
 ## Run with Docker
 
 ```bash
